@@ -1,2 +1,2 @@
-# Finetune-LLM-for-Clientside-Web-Attack-Detection
+# Detecting Client side web attacks using GENAI
 Detecting Client Side Web attacks 
