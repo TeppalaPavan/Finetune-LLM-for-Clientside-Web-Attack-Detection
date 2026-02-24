@@ -1,1 +1,33 @@
 
+#we can talk to the chatbot in a loop until we type exit in the vscode terminal itself
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
+from dotenv import load_dotenv
+
+load_dotenv()
+
+model = ChatOpenAI()
+
+
+chat_history = [
+    SystemMessage(content='You are a helpful AI assistant')
+]
+
+while True:
+    user_input = input('You: ')
+
+    #append user message to chat history
+    chat_history.append(HumanMessage(content=user_input))
+    if user_input == 'exit':
+        break
+
+    #invoke the model with the chat history
+    result = model.invoke(chat_history)
+
+    #append AI message to chat history
+    chat_history.append(AIMessage(content=result.content))
+    print("AI: ",result.content)
+
+    #by including chat history, the model can remember the context of the conversation
+
+print(chat_history)
